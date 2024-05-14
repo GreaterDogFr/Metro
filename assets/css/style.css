@@ -1,0 +1,376 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* css */
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+
+/* global */
+html,
+body {
+  height: 100%;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* header */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+.topnav #myLinks {
+  display: none;
+}
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+/* Style home/logo */
+.active {
+  background-color: #04aa6d;
+  color: white;
+}
+/* titles */
+.pagetitle {
+  padding-top: 30px;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 3rem;
+}
+/* form */
+.form {
+  display: flex;
+  flex-flow: column;
+  align-items: start;
+  gap: 20px;
+  width: 60%;
+  padding: 10px;
+  border-radius: 25px;
+}
+.formlines {
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+}
+.formlines label {
+  font-size: 1.2rem;
+}
+.formlines input {
+  height: 30px;
+  width: 350px;
+}
+.selectinput {
+  height: 30px;
+  width: 360px;
+}
+.inputdescription {
+  height: 90px;
+  width: 350px;
+  resize: none;
+}
+.formbuttons {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+}
+.submitbutton {
+  align-self: center;
+  width: 150px;
+  height: 60px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 1px black solid;
+}
+.signlink {
+  padding-bottom: 20px;
+}
+/* Home */
+.containerhome {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 7px;
+}
+.date {
+  text-transform: capitalize;
+}
+.profilepicture {
+  width: 100px;
+}
+.homebuttons {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+button {
+  width: 200px;
+  height: 30px;
+}
+.greenbutton {
+  background-color: #04aa6d;
+  border-radius: 25px;
+  border: 1px solid black;
+}
+.redbutton {
+  background-color: red;
+  border-radius: 25px;
+  border: 1px solid black;
+}
+/* History */
+.travel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.travel hr {
+  width: 100%;
+  border-top: 2px solid black;
+}
+.traveltext {
+  padding-left: 10px;
+}
+.deletetravelhistory {
+  width: 150px;
+  height: 40px;
+  border-radius: 25px;
+  border: 1px solid black;
+  font-size: 1rem;
+}
+.travelbuttons {
+  padding-left: 10px;
+}
+/* Format mobile */
+@media screen and (max-width: 576px) {
+  /* Header */
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+  }
+  .topnav #myLinks {
+    display: none;
+  }
+  .topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  /* Style the hamburger menu */
+  .topnav a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  /* Style home/logo */
+  .active {
+    background-color: #04aa6d;
+    color: white;
+  }
+  /* form */
+  .form {
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    gap: 20px;
+    width: 80%;
+    padding: 10px 0px;
+    border-radius: 25px;
+  }
+  .formlines {
+    align-self: center;
+    gap: 10px;
+    width: 90%;
+  }
+  .formlines input {
+    width: 90%;
+    align-self: center;
+  }
+  /* titles */
+  .pagetitle {
+    font-size: 2rem;
+  }
+  .selectinput {
+    width: 95%;
+    align-self: center;
+  }
+  .inputdescription
+  {
+    width: 90%;
+    align-self: center;
+  }
+
+  .formbuttons {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+  }
+  .submitbutton {
+    width: 120px;
+  }
+
+}
