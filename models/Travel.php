@@ -84,7 +84,7 @@ class travel
             $database = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
             $sql = "SELECT * FROM `travels__tvl` NATURAL JOIN `transportation__tra` WHERE `TVL_ID` = :TVL_ID";
             $query = $database->prepare($sql);
-            $query->bindValue(':TVL_ID', $userid, PDO::PARAM_STR);
+            $query->bindValue(':TVL_ID', $travelid, PDO::PARAM_INT);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -94,6 +94,33 @@ class travel
             die();
         }
     }
+    /**
+     * Méthode permettant de mettre a jour un travel en fonction de son id et des infos passées
+     * @param int $travelid
+     * 
+     * @return void
+     */
+    public static function update(int $travelid, $traveldate,$traveltime,$traveldistance,$transportid)
+    {
+        $database = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
+        $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE `travels__tvl` SET TVL_DATE = :TVL_DATE, TVL_TIME = :TVL_TIME, TVL_DISTANCE=:TVL_DISTANCE, TRA_ID = :TRA_ID WHERE TVL_ID = :TVL_ID';
+        $query = $database->prepare($sql);
+
+        $query->bindValue(':TVL_ID', $travelid, PDO::PARAM_INT);
+        $query->bindvalue(':TVL_DATE',$traveldate);
+        $query->bindvalue(':TVL_TIME',$traveltime);
+        $query->bindvalue(':TVL_DISTANCE',$traveldistance, PDO::PARAM_STR);
+        $query->bindvalue(':TRA_ID', $transportid, PDO::PARAM_INT);
+
+        try {
+            $query->execute();
+            echo 'travel modifié avec succès !';
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
+
 
     /**
      * Méthode permettant de supprimer un travel selon son id
@@ -112,7 +139,6 @@ class travel
         $sql = 'DELETE FROM `travels__tvl` WHERE TVL_ID = :TVL_ID ';
 
         $query = $database->prepare($sql);
-
         $query->bindValue(':TVL_ID', $travelid, PDO::PARAM_INT);
 
         $query->execute();

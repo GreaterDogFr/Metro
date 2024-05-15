@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     if(isset($_POST['back'])){
         header("Location: ./controller-home.php");
     }
-    
+    var_dump($_POST);
     
     //? Si aucune erreur
     if (empty($errors)){
@@ -53,8 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         $traveltype = $_POST['traveltype'];
         $userid = $_SESSION['user']['USR_ID'];
 
-        Travel::create($traveldate
-        ,$traveltime,$traveldistance,$traveltype,$userid);
+        Travel::create($traveldate,$traveltime,$traveldistance,$traveltype,$userid);
         header("Location: ./controller-travelhistory.php");
     }
 }
