@@ -5,11 +5,13 @@ include '../views/templates/header.php';
 <div class="container">
     <h2 class="pagetitle">Modifier <span class="welcomeyellow">Profil</span></h2>
     <form action="../controllers/controller-profile.php" method="POST" class="form" enctype="multipart/form-data">
-        <!-- //TODO: Insérer photo de profil -->
 
         <div class="formlines">
             <label class="formalabels" for="profilepicture">Photo de profil :</label>
             <input type="file" name="profilepic" value="profilepic" accept="image/jpeg, image/jpg, image/png">
+        </div>
+        <div class="formlines">
+            <button onclick='return confirm("Voulez vous vraiment supprimer votre photo de profil?")' type="submit" name="deleteprofilepicture" value="deleteprofilepicture">Supprimer la photo de profil</button>
         </div>
         <div class="formlines">
             <label class="formlabels" for="firstname">Prénom :</label>

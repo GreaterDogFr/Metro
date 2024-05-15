@@ -218,4 +218,25 @@ class Utilisateur
                 echo 'Erreur : ' . $e->getMessage();
             }
     }
+    /**
+     * Méthode permettant de supprimer de la base de donnée la photo de profil de l'utilisateur et de la remplacer par null
+     * @param int $userid ID de l'utilisateur
+     * 
+     * @return void
+     */
+    public static function deleteProfilePicture(int $userid)
+    {
+            $database = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
+            $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            $sql = 'UPDATE `user__usr` SET USR_PIC = NULL WHERE USR_ID = :USR_ID';
+            $query = $database->prepare($sql);
+            $query->bindValue(':USR_ID', $userid, PDO::PARAM_INT);
+            try {
+                $query->execute();
+                echo 'photo de profil supprimé avec succès';
+            }catch (PDOException $e) {
+                echo 'Erreur : ' . $e->getMessage();
+            }
+    }
 }

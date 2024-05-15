@@ -17,6 +17,8 @@ $paternSpecChar = '/[\'\/^£$%&*()}{@#~?><>,|=_+¬-]/';
 $getentreprises = json_decode(Entreprise::getInfos(),true);
 $entreprises = $getentreprises['data'];
 
+$userprofilepicture = $_SESSION['user']['USR_PIC'];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $errors =  [];
@@ -29,7 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $imageFileType = strtolower(pathinfo($targetfile,PATHINFO_EXTENSION));
     $uploadOk= 1;
 
-    if (isset($_POST['firstname'])) {
+    if (isset($_POST['deleteprofilepicture'])) {
+        unlink("../assets/uploads/$userprofilepicture");
+        Utilisateur::deleteProfilePicture($_SESSION['user']['USR_ID']) ;
+        header("Location: ./controller-home.php");
+    }
+
+    if (isset($_POST['firstname'])) { 
         if (preg_match($paternSpecChar, $_POST['firstname'])) {
             $errors['firstname'] = 'Pas de charactère spéciaux';
         } else if (empty($_POST['firstname'])) {
@@ -99,21 +107,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     
     
     if (empty($errors)){
-        // if (isset($_FILES['profilepic'])) {
-        //     $check = getimagesize($_FILES['profilepic']['tmp_name']);
-        //     if($check !== false) {
-        //         //L'image est dans le bon format
-        //         $uploadOk = 1;
-        //     } else {
-        //         //Le fichier n'est pas une image
-        //         $uploadOk = 0;
-        //     }
-        // }
+        if (isset($_FILES['profilepic']) && $_FILES['profilepic']['size'] > 0) {
+            $check = getimagesize($_FILES['profilepic']['tmp_name']);
+            if($check !== false) {
+                //L'image est dans le bon format
+                $uploadOk = 1;
+            } else {
+                //Le fichier n'est pas une image
+                $uploadOk = 0;
+            }
+        }
 
-        // // Allow certain file formats
-        // if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-        //     $uploadOk = 0;
-        // }
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            $uploadOk = 0;
+        }
 
         $userid = $_SESSION['user']['USR_ID'];
         $userfname = $_POST['firstname'];
