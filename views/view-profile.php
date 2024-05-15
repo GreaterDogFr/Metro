@@ -4,7 +4,6 @@ include '../views/templates/header.php';
 ?>
 <div class="container">
     <h2 class="pagetitle">Modifier <span class="welcomeyellow">Profil</span></h2>
-    <!-- //TODO : Permettre d'afficher tout ce formulaire sur l'appui d'un bouton Modifier -->
     <form action="../controllers/controller-profile.php" method="POST" class="form" enctype="multipart/form-data">
         <!-- //TODO: Insérer photo de profil -->
 
@@ -63,8 +62,7 @@ include '../views/templates/header.php';
         </div>
         <div class="formlines">
             <label class="formlabels" for="description">Description :</label>
-            <textarea type="textarea" class="inputdescription" name="description"><?= $_SESSION['user']['USR_DSC'] ?></textarea>
-            <!-- //TODO: limiter a 1000 charactères. -->
+            <textarea type="textarea" class="inputdescription" name="description" maxlength="1000" ><?= $_SESSION['user']['USR_DSC'] ?></textarea>
         </div>
         <div class="formlines">
             <label class="formlabels" for="password">Mot de passe :</label>

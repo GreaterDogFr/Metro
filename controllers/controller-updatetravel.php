@@ -14,6 +14,8 @@ if(!isset($_SESSION['user']))
 $gettransports = json_decode(Transport::getTransports(),true);
 $transports = $gettransports['data'];
 
+$todaysdate = date('Y-m-d');
+
 $travelid = $_GET['tvl'];
 $travelinfos = Travel::getTravelInfoById($travelid);
 
@@ -24,7 +26,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     if ((isset($_POST['traveldate'])) && empty($_POST['traveldate'])) {
         $errors['traveldate'] = 'Entrez une date';
     }
-    // TODO: Empêcher de dater le futur
 
     if ((isset($_POST['traveltime'])) && empty($_POST['traveltime'])) {
         $errors['traveltime'] = 'Entrez une durée de voyage';
@@ -37,9 +38,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     if ((isset($_POST['traveltype'])) && $_POST['traveltype']=="0" ) {
         $errors['traveltype'] = 'Sélectionnez un moyen de transport';
     }
-
-    //TODO: Empêcher un kilométrage trop élevé (erreur sql)
-
     if(isset($_POST['back'])){
         header("Location: ./controller-home.php");
     }

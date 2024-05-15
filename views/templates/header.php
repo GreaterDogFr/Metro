@@ -12,7 +12,6 @@
         <a class="active" href="../controllers/controller-home.php">EcoChallenge</a>
         <!-- (hidden by default) -->
         <div id="myLinks">
-            <!-- //TODO: Conditionner les liens selon l'état de la connection de l'utilisateur -->
             <a href="../controllers/controller-home.php" class="links">Accueil</a>
         </div>
         <!-- //? "javascript:void(0); permet d'éviter un rechargement de page sur le click. -->

@@ -8,7 +8,7 @@ include '../views/templates/header.php';
     <form action="../controllers/controller-addtravel.php" method="POST" class="form">
     <div class="formlines">
         <label class="formlabels" for="traveldate">Date du voyage</label>
-        <input type="date" name="traveldate" class="traveldate"  value="<?= isset($_POST['traveldate']) ? $_POST['traveldate'] : ''; ?>">
+        <input type="date" name="traveldate" class="traveldate" max="<?=$todaysdate?>" value="<?= isset($_POST['traveldate']) ? $_POST['traveldate'] : ''; ?>">
         <p class="errorText">
             <?= isset($errors['traveldate']) ? $errors['traveldate'] : "";?>
         </p>
@@ -24,7 +24,7 @@ include '../views/templates/header.php';
     
     <div class="formlines">
         <label class="formlabels" for="traveldistance">Distance parcourue(en km)</label>
-        <input type="number" name="traveldistance"  class="traveldistance"  value="<?= isset($_POST['traveldistance']) ? $_POST['traveldistance'] : ''; ?>"">
+        <input type="number" name="traveldistance"  class="traveldistance" min="0" max="99999" value="<?= isset($_POST['traveldistance']) ? $_POST['traveldistance'] : ''; ?>"">
         <p class="errorText">
             <?= isset($errors['traveldistance']) ? $errors['traveldistance'] : ""; ?>
         </p>
