@@ -14,9 +14,9 @@ foreach ($travelhistory as $travels) {
         <form action="../controllers/controller-travelhistory.php" class="travelbuttons" method="POST">
             <input type="hidden" name="travelid" value=<?=$travels['TVL_ID']?> >
             <button onclick='return confirm("Supprimer le trajet en date du <?=$formatteddate?> ?")' class="deletetravelhistory" type="submit" id="delete" name="delete" value="delete">Supprimer</button>
-        </form>
-        <hr>
-    </div>
+        </div>
+        <a href="../controllers/controller-updatetravel.php?tvl=<?= $travels['TVL_ID']?>" >Editer</a>
+    </form>
     <?php }?>
 
     <form action="../controllers/controller-travelhistory.php" method="POST" class="formbuttons">

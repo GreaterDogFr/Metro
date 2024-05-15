@@ -1,7 +1,5 @@
-mettes de prompts de confirmation(rdiriger vers l'historique
+mettes de prompts de confirmation(rediriger vers l'historique)
 
-ACCESS : contraste élevé ?
 
-A terminer : TODO des fichiers, insérer des images dans la bdd et le site avec $_files
 Entreprise pro : Entreprise : admin@admin.gmail.com mdp: GlaDOS76120
 Rick@gmail.com 123123123

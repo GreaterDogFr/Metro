@@ -69,6 +69,32 @@ class travel
         }
 
     }
+
+    /**
+     * Méthode permettant de récupérer les infos d'un travel en renseignant son ID
+     * 
+     * @param int $travelid
+     * 
+     * @return array
+     */
+
+    public static function getTravelInfoById(int $travelid): array
+    {
+        try {
+            $database = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
+            $sql = "SELECT * FROM `travels__tvl` NATURAL JOIN `transportation__tra` WHERE `TVL_ID` = :TVL_ID";
+            $query = $database->prepare($sql);
+            $query->bindValue(':TVL_ID', $userid, PDO::PARAM_STR);
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
+    }
+
     /**
      * Méthode permettant de supprimer un travel selon son id
      * 

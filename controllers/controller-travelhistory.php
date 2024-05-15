@@ -32,6 +32,11 @@ if(isset($_POST['delete'])){
     header("Refresh:0");
 }
 
+if(isset($_POST['update'])){
+
+    header("Location: ./controller-updatetravel.php");
+}
+
 if(isset($_POST['add'])){
     header("Location: ./controller-addtravel.php");
 }
