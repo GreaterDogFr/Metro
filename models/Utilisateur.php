@@ -159,19 +159,18 @@ class Utilisateur
      *@param string $useruname pseudo de l'utilisateur
      *@param string $usermail date de naissance de l'utilisateur
      *@param string $userdesc description de l'utilisateur
-     *@param string $userpass mot de passe de l'utilisateur
      *@param string $userpicture photo de profil de l'utilisateur
      *@param int $entid id de l'entreprise lié à l'utilisateur 
      * 
      * @return void
      */
-    public static function update($userid,$userfname,$userlname, $useruname,$userbday,$usermail ,$userdesc,$userpass,$userpicture, $entid)
+    public static function update($userid,$userfname,$userlname, $useruname,$userbday,$usermail ,$userdesc,$userpicture, $entid)
     {
         $database = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
         $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = 'UPDATE `user__usr` SET USR_FNAME = :USR_FNAME, USR_LNAME = :USR_LNAME, USR_UNAME =:USR_UNAME, USR_BDAY = :USR_BDAY , 
-        USR_MAIL = :USR_MAIL ,USR_PASS = :USR_PASS , USR_PIC = :USR_PIC ,USR_DSC = :USR_DSC, ENT_ID = :ENT_ID
+        USR_MAIL = :USR_MAIL, USR_PIC = :USR_PIC ,USR_DSC = :USR_DSC, ENT_ID = :ENT_ID
         WHERE USR_ID = :USR_ID';
 
         $query = $database->prepare($sql);
@@ -183,7 +182,6 @@ class Utilisateur
         $query->bindValue(':USR_BDAY', $userbday);
         $query->bindValue(':USR_MAIL', $usermail, PDO::PARAM_STR );
         $query->bindValue(':USR_DSC', $userdesc, PDO::PARAM_STR );
-        $query->bindValue(':USR_PASS', password_hash($userpass,PASSWORD_DEFAULT), PDO::PARAM_STR );
         $query->bindValue(':USR_PIC', $userpicture, PDO::PARAM_STR );
         $query->bindValue(':ENT_ID', $entid, PDO::PARAM_INT);
 

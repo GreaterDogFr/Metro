@@ -9,6 +9,10 @@ include '../views/templates/header.php';
         <div class="formlines">
             <label class="formalabels" for="profilepicture">Photo de profil :</label>
             <input type="file" name="profilepic" value="profilepic" accept="image/jpeg, image/jpg, image/png">
+            <ul>
+                <li>N'accepte pas que les fichiers en .jpeg, .jpg, .png.</li>
+                <li>Taille max: 2MB.</li>
+            </ul>
         </div>
         <div class="formlines">
             <button onclick='return confirm("Voulez vous vraiment supprimer votre photo de profil?")' type="submit" name="deleteprofilepicture" value="deleteprofilepicture">Supprimer la photo de profil</button>
@@ -67,22 +71,11 @@ include '../views/templates/header.php';
             <textarea type="textarea" class="inputdescription" name="description" maxlength="1000" ><?= $_SESSION['user']['USR_DSC'] ?></textarea>
         </div>
         <div class="formlines">
-            <label class="formlabels" for="password">Mot de passe :</label>
-            <input type="password" class="inputforms" name="password">
-            <p class="errorText">
-                    <?= isset($errors['password']) ? $errors['password'] : "";?>
-            </p>
-        </div>
-        <div class="formlines">
-            <label class="formlabels" for="passwordconfirm">Confirmation de mot de passe :</label>
-            <input type="password" class="inputforms" name="passwordconfirm">
-            <p class="errorText">
-                    <?= isset($errors['passwordconfirm']) ? $errors['passwordconfirm'] : "";?>
-            </p>
+            <button type="submit" name="updatepassword" value="updatepassword">Modifier Mot de passe </button>
         </div>
         
         <div class="formbuttons">
-            <button class="submitbutton" type="submit">Valider</button>
+            <button class="submitbutton" type="submit" name="validate" value="validate">Valider</button>
             <button class="submitbutton" type="submit" name="back">Revenir à l'accueil</button>
         </div>
     </form>

@@ -18,7 +18,6 @@ $getentreprises = json_decode(Entreprise::getInfos(),true);
 $entreprises = $getentreprises['data'];
 
 $userprofilepicture = $_SESSION['user']['USR_PIC'];
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $errors =  [];
@@ -30,6 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     //? Permet de vérifier l'extension de fichier
     $imageFileType = strtolower(pathinfo($targetfile,PATHINFO_EXTENSION));
     $uploadOk= 1;
+
+    if(isset($_POST['back'])){
+        header("Location: ./controller-home.php");
+    }
+
+    if(isset($_POST['updatepassword'])) {
+        header("Location: ./controller-updatepassword.php");
+    }
+
 
     if (isset($_POST['deleteprofilepicture'])) {
         unlink("../assets/uploads/$userprofilepicture");
@@ -73,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         }
     }
 
-
     if ((isset($_POST['birthday'])) && empty($_POST['birthday'])) {
         $errors['birthday'] = 'Entrez une date';
     } else {
@@ -84,29 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $errors['enterprise'] = "Choisissez une entreprise";
     }
-
-    if (isset($_POST['password'])) {
-        if (empty($_POST['password'])) {
-            $errors['password'] = 'Entrez votre Mot de passe';
-        } else if (strlen($_POST['password']) < 8) {
-            $errors['password'] = 'Plus de 8 charactères';
-        }
-    }
-
-    if (isset($_POST['password']) && (isset($_POST['passwordconfirm']))) {
-        if (empty($_POST['passwordconfirm'])) {
-            $errors['passwordconfirm'] = 'Confirmez votre mot de passe';
-        } else if ($_POST['password'] != $_POST['passwordconfirm']) {
-            $errors['passwordconfirm'] = 'Mot de passe non identique';
-        }
-    }
-
-    if(isset($_POST['back'])){
-        header("Location: ./controller-home.php");
-    }
     
-    
-    if (empty($errors)){
+    if (empty($errors) && isset($_POST['validate'])){
         if (isset($_FILES['profilepic']) && $_FILES['profilepic']['size'] > 0) {
             $check = getimagesize($_FILES['profilepic']['tmp_name']);
             if($check !== false) {
@@ -139,10 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             move_uploaded_file($_FILES['profilepic']['tmp_name'], $targetfile);
             $userpicture = $_FILES['profilepic']['name'];
         }
-        $userpass = $_POST['password'];
         $entid = $_POST['enterprise'];
 
-        Utilisateur::update($userid,$userfname,$userlname, $useruname,$userbday,$usermail,$userdesc,$userpass,$userpicture, $entid);
+        Utilisateur::update($userid,$userfname,$userlname, $useruname,$userbday,$usermail,$userdesc,$userpicture, $entid);
         Header("Location: ./controller-home.php");
     }
 }
