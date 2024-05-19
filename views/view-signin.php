@@ -4,7 +4,7 @@ include '../views/templates/header.php';
 ?>
 <div class="container">
     <h2 class="pagetitle">Connexion</h2>
-    <form action="../controllers/controller-signin.php" method="POST" class="form">
+    <form action="../controllers/controller-signin.php" method="POST" class="form center">
         <div class="formlines">
             <label class="formlabels" for="email">Adresse mail :</label>
             <input type="email" class="inputforms" name="usermail" placeholder="Ex: Doe@gmail.com" value="<?=isset($_POST['usermail']) ? $_POST['usermail'] : '';?>">
@@ -25,7 +25,7 @@ include '../views/templates/header.php';
     </form>
 
     <div class="signlink">
-        <p>Pas de compte ? <a class="signlink" href="../controllers/controller-signup.php"> Inscrivez vous !</a></p>
+        <p>Pas de compte ? <a class="signlink" href="../controllers/controller-signup.php">Inscrivez vous !</a></p>
     </div>
 
 </div>

@@ -192,7 +192,7 @@ body {
 .form {
   display: flex;
   flex-flow: column;
-  align-items: start;
+  align-items: center;
   gap: 20px;
   width: 60%;
   padding: 10px;
@@ -231,6 +231,10 @@ body {
   width: 150px;
   height: 60px;
   font-size: 1rem;
+  border-radius: 25px;
+  border: 1px black solid;
+}
+.btnupdateprofil{
   border-radius: 25px;
   border: 1px black solid;
 }
@@ -333,7 +337,7 @@ button {
   .form {
     display: flex;
     flex-flow: column;
-    align-items: start;
+    align-items: center;
     gap: 20px;
     width: 80%;
     padding: 10px 0px;

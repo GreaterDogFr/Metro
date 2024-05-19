@@ -192,6 +192,34 @@ class Utilisateur
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+    /**
+     * Méthode permettant d'update le password d'un utilisateur en fonction de son id
+     * utilisé dans la page updatepassword.
+     * 
+     * @param int $userid           id de l'utilisateur
+     * @param string $userpassword  mot de passe de l'utilisateur
+     * 
+     * @return void
+     */
+    public static function updatePassword($userid,$userpassword){
+
+        $database = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
+        $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = 'UPDATE `user__usr` SET USR_PASS = :USR_PASS WHERE USR_ID = :USR_ID';
+
+        $query = $database->prepare($sql);
+
+        $query->bindValue(':USR_ID', $userid, PDO::PARAM_INT);
+        $query->bindValue(':USR_PASS', password_hash($userpassword, PASSWORD_DEFAULT), PDO::PARAM_STR);
+
+        try {
+            $query->execute();
+            echo 'Mot de passe modifié avec succès !';
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }   
 
     /**
      * Méthode visant a supprimer l'utilisateur de la base de données

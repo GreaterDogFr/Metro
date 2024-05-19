@@ -15,7 +15,7 @@ include '../views/templates/header.php';
             </ul>
         </div>
         <div class="formlines">
-            <button onclick='return confirm("Voulez vous vraiment supprimer votre photo de profil?")' type="submit" name="deleteprofilepicture" value="deleteprofilepicture">Supprimer la photo de profil</button>
+            <button onclick='return confirm("Voulez vous vraiment supprimer votre photo de profil?")' class="btnupdateprofil" type="submit" name="deleteprofilepicture" value="deleteprofilepicture">Supprimer la photo de profil</button>
         </div>
         <div class="formlines">
             <label class="formlabels" for="firstname">Prénom :</label>
@@ -71,7 +71,7 @@ include '../views/templates/header.php';
             <textarea type="textarea" class="inputdescription" name="description" maxlength="1000" ><?= $_SESSION['user']['USR_DSC'] ?></textarea>
         </div>
         <div class="formlines">
-            <button type="submit" name="updatepassword" value="updatepassword">Modifier Mot de passe </button>
+            <button class="btnupdateprofil" type="submit" name="updatepassword" value="updatepassword">Modifier Mot de passe </button>
         </div>
         
         <div class="formbuttons">
